@@ -1,16 +1,17 @@
+using System.Collections;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
     public Camera cam;
     public float range = 100f;
-    public AudioSource gunSound; // เพิ่มตัวแปรเสียง
+    public AudioSource gunSound;
+    public RectTransform hitMarkerUI; // เป้าแบบ UI
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            // เล่นเสียงปืน
             gunSound.Play();
 
             Vector3 screenPos = Input.mousePosition;
@@ -22,9 +23,21 @@ public class Gun : MonoBehaviour
                 if (bottle != null)
                 {
                     bottle.OnHit();
+
+                    // แปลงตำแหน่ง world ที่โดน ไปเป็นตำแหน่งบนหน้าจอ
+                    Vector3 uiPosition = cam.WorldToScreenPoint(hit.point);
+                    hitMarkerUI.position = uiPosition;
+
+                    StartCoroutine(ShowHitMarker());
                 }
             }
         }
     }
-}
 
+    IEnumerator ShowHitMarker()
+    {
+        hitMarkerUI.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        hitMarkerUI.gameObject.SetActive(false);
+    }
+}
