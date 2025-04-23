@@ -5,20 +5,20 @@ public class BottleSpawner : MonoBehaviour
 {
     public static BottleSpawner Instance;
 
-    public List<GameObject> bottlePrefabs;  // เก็บ prefab ของขวดหลายๆ แบบ
-    public float spawnInterval = 2f;  // เวลาระหว่างการ spawn ขวด
+    public List<GameObject> bottlePrefabs;  // ๏ฟฝ๏ฟฝ prefab ๏ฟฝอง๏ฟฝวด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ แบบ
+    public float spawnInterval = 2f;  // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาง๏ฟฝ๏ฟฝ๏ฟฝ spawn ๏ฟฝวด
     private float spawnTimer;
-    private bool isPlaying = true;    // ตัวแปรที่ใช้บอกว่าเกมยังไม่จบ
+    private bool isPlaying = true;    // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝรท๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัง๏ฟฝ๏ฟฝ่จบ
 
     void Awake()
     {
         if (Instance == null)
         {
-            Instance = this;  // กำหนด Instance ให้เป็นตัวนี้
+            Instance = this;  // ๏ฟฝ๏ฟฝหน๏ฟฝ Instance ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ็นต๏ฟฝวน๏ฟฝ๏ฟฝ
         }
         else
         {
-            Destroy(gameObject);  // ถ้ามี Instance อยู่แล้วให้ทำลายตัวนี้
+            Destroy(gameObject);  // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ Instance ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝยต๏ฟฝวน๏ฟฝ๏ฟฝ
         }
     }
 
@@ -29,7 +29,7 @@ public class BottleSpawner : MonoBehaviour
 
     void Update()
     {
-        // เช็คว่าเกมยังไม่จบก่อนที่จะ spawn
+        // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัง๏ฟฝ๏ฟฝ่จบ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ spawn
         if (!isPlaying) return;
 
         spawnTimer -= Time.deltaTime;
@@ -43,7 +43,7 @@ public class BottleSpawner : MonoBehaviour
 
     public void StopSpawning()
     {
-        isPlaying = false;  // หยุดการ spawn เมื่อเกมจบ
+        isPlaying = false;  // ๏ฟฝ๏ฟฝุด๏ฟฝ๏ฟฝ๏ฟฝ spawn ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
     }
 
     void SpawnBottle()
@@ -53,16 +53,18 @@ public class BottleSpawner : MonoBehaviour
             int randomIndex = Random.Range(0, bottlePrefabs.Count);
             GameObject bottleToSpawn = bottlePrefabs[randomIndex];
 
-            // สุ่มตำแหน่งในหน้าจอ (Viewport space: x=0..1, y=0..1)
-            float x = Random.Range(0.1f, 0.9f); // ไม่ให้ติดขอบจอ
+            // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝหน๏ฟฝ๏ฟฝหน๏ฟฝาจ๏ฟฝ (Viewport space: x=0..1, y=0..1)
+            float x = Random.Range(0.1f, 0.9f); // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝิด๏ฟฝอบ๏ฟฝ๏ฟฝ
             float y = Random.Range(0.1f, 0.9f);
-            float z = 5f; // ระยะห่างจากกล้อง (ปรับได้ตามความลึกที่ต้องการ)
+            float z = 5f; // ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาง๏ฟฝาก๏ฟฝ๏ฟฝ๏ฟฝอง (๏ฟฝ๏ฟฝับ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝึก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ)
 
             Vector3 viewportPos = new Vector3(x, y, z);
             Vector3 worldPos = Camera.main.ViewportToWorldPoint(viewportPos);
 
-            GameObject spawnedBottle = Instantiate(bottleToSpawn, worldPos, Quaternion.identity);
-            Destroy(spawnedBottle, 2f); // ลบออกหลัง 2 วิ
+            GameObject spawnedBottle = Instantiate(bottleToSpawn, worldPos, Quaternion.Euler(0,180,0));
+            
+
+            Destroy(spawnedBottle, 2f); // ลบ๏ฟฝอก๏ฟฝ๏ฟฝัง 2 ๏ฟฝ๏ฟฝ
 
         }
     }
