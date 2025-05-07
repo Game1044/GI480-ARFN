@@ -798,8 +798,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 772538031
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &533735029
 RectTransform:
@@ -2539,6 +2539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointValue: -30
   hitEffectSpritePrefab: {fileID: 8568189022412148963, guid: 8cfa5c27c5f1a654b80cc7b0cbd17eda, type: 3}
+<<<<<<< HEAD
 --- !u!1 &1589964418
 GameObject:
   m_ObjectHideFlags: 0
@@ -2823,6 +2824,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> 8babe9e (good)
 --- !u!1 &1643924018
 GameObject:
   m_ObjectHideFlags: 0
