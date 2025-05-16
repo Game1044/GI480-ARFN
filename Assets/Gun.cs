@@ -2,33 +2,33 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public Camera cam;
-    public float range = 100f;
-    public AudioSource gunSound;
-    public RectTransform hitMarkerUI;
+    public Camera arCamera;
+    public GameObject smokeEffect;
+    public GameManager gameManager;
 
-    void Update()
+    public void Shoot()
     {
-        if (Input.GetMouseButtonDown(0))
+        RaycastHit hit;
+        if (Physics.Raycast(arCamera.transform.position, arCamera.transform.forward, out hit))
         {
-            gunSound.Play();
-
-            // ‡πÅ‡∏™‡∏î‡∏á‡πÄ‡∏õ‡πâ‡∏≤‡πÉ‡∏ô‡∏ï‡∏≥‡πÅ‡∏´‡∏ô‡πà‡∏á‡∏ó‡∏µ‡πà‡∏ú‡∏π‡πâ‡πÄ‡∏•‡πà‡∏ô‡∏Ñ‡∏•‡∏¥‡∏Å
-
-
-            // ‡∏ï‡∏£‡∏ß‡∏à‡∏™‡∏≠‡∏ö‡∏ß‡πà‡∏≤‡∏Å‡∏£‡∏∞‡∏™‡∏∏‡∏ô‡πÇ‡∏î‡∏ô‡∏≠‡∏∞‡πÑ‡∏£‡∏´‡∏£‡∏∑‡∏≠‡πÑ‡∏°‡πà
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    
-            if (Physics.Raycast(ray, out RaycastHit hit, range))
+            // µ√«® Õ∫«Ë“ hit °—∫ GameObject ∑’Ë¡’ Tag "Bottle" À√◊Õ‰¡Ë
+            if (hit.transform.CompareTag("Bottle"))
             {
-                Bottle bottle = hit.collider.GetComponent<Bottle>();
-                if (bottle != null)
+                // ¥÷ß §√‘ªµÏ Bottle ®“° object π—Èπ (∂È“¡’)
+                Bottle bottle = hit.transform.GetComponent<Bottle>();
+
+                // ∑”≈“¬¢«¥
+                Destroy(hit.transform.gameObject);
+
+                //  √È“ß§«—πµ√ßµ”·ÀπËß‚¥π¬‘ß
+                Instantiate(smokeEffect, hit.point, Quaternion.LookRotation(hit.normal));
+
+                // ‡æ‘Ë¡·µÈ¡ ∂È“¡’ §√‘ªµÏ Bottle Õ¬ŸË
+                if (bottle != null && gameManager != null)
                 {
-                    bottle.OnHit();
+                    gameManager.AddScore(bottle.pointValue);
                 }
             }
         }
     }
-
-
 }

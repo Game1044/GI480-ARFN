@@ -2,16 +2,19 @@ using UnityEngine;
 
 public class Bottle : MonoBehaviour
 {
-    public int pointValue = 10;
-    public GameObject hitEffectSpritePrefab;
+    public int pointValue = 10;  // °”Àπ¥·µÈ¡¢Õß°√–ªÎÕß·µË≈–Õ—π (ª√—∫§Ë“‰¥È„π Inspector)
+    public bool isMoving = true;
 
-    public void OnHit()
+    void Update()
     {
-        GameObject effect = Instantiate(hitEffectSpritePrefab, transform.position, Quaternion.identity);
+        if (isMoving)
+        {
+            transform.Translate(Vector3.up * Time.deltaTime * 0.2f);
+        }
+    }
 
-        // ‡∏•‡∏ö‡∏†‡∏≤‡∏û‡∏´‡∏•‡∏±‡∏á 0.5 ‡∏ß‡∏¥‡∏ô‡∏≤‡∏ó‡∏µ
-        Destroy(effect, 0.5f);
-        GameManager.Instance.AddScore(pointValue);
-        Destroy(gameObject);
+    public void StopMoving()
+    {
+        isMoving = false;
     }
 }
